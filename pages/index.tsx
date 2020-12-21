@@ -1,7 +1,9 @@
 import Head from 'next/head';
 import { blogClientFromEnvOrThrow } from '../scripts/blogClient/BlogClient.factory';
 import { TopicItem } from '../scripts/blogClient/types';
-import styles from '../styles/Home.module.css';
+import Menu from '../scripts/Menu';
+import Content from '../scripts/Content';
+import styles from '../styles/general.module.css';
 
 export default function Home({ topics }: {
   topics: TopicItem[]
@@ -12,7 +14,8 @@ export default function Home({ topics }: {
         <title>Sam Roberts' personal website</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      {JSON.stringify(topics)}
+      <Menu />
+      <Content />
     </div>
   )
 }

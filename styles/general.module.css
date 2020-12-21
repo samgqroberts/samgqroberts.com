@@ -1,10 +1,23 @@
 .container {
   min-height: 100vh;
-  padding: 0 0.5rem;
+  display: flex;
+  width: 100%;
+  padding-top: 50px;
+  justify-content: center;
+}
+
+.menuContainer {
+  width: 270px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  height: fit-content;
+  padding: 0 14px;
+}
+
+.contentContainer {
+  width: 565px;
+  padding: 0 14px;
 }
 
 .main {
