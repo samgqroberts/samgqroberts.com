@@ -19,7 +19,7 @@ export default function Home({ topics }: {
 
 export async function getStaticProps() {
   const blogClient = blogClientFromEnvOrThrow();
-  const topics = (await blogClient.getTopics()).valueOrThrow('Unable to get blog topics');
+  const topics = (await blogClient.getBlogTopics()).valueOrThrow('Unable to get blog topics');
   return {
     props: {
       topics,
