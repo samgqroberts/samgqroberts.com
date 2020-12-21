@@ -8,7 +8,6 @@
     "start": "next start"
   },
   "dependencies": {
-    "discourser": "^1.0.0",
     "next": "10.0.0",
     "predicates": "^2.0.3",
     "react": "17.0.1",

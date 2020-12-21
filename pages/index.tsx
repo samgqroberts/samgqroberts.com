@@ -1,6 +1,6 @@
-import { TopicItem } from 'discourser/source/types';
 import Head from 'next/head';
-import { blogClientFromEnvOrThrow } from '../scripts/BlogClient.factory';
+import { blogClientFromEnvOrThrow } from '../scripts/blogClient/BlogClient.factory';
+import { TopicItem } from '../scripts/blogClient/types';
 import styles from '../styles/Home.module.css';
 
 export default function Home({ topics }: {
