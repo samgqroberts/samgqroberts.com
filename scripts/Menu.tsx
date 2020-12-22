@@ -9,8 +9,9 @@ export default function Menu({ }: {
       <a href="/" className={styles.headshotLink}>
         <Image src="/headshot.png" alt="In fact, me!" width={140} height={140} />
       </a>
-      <p>I am Sam Roberts</p>
-      <p>You can reach me here here and here</p>
+      <a href="https://twitter.com/samgqroberts">twitter.com/samgqroberts</a>
+      <a href="https://github.com/samgqroberts">github.com/samgqroberts</a>
+      <a href="https://www.linkedin.com/in/samgqroberts">linkedin.com/in/samgqroberts</a>
     </div>
   );
 }

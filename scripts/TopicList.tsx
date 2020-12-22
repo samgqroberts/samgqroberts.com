@@ -19,7 +19,7 @@ export default function TopicList({ topicsAndPosts }: {
           <PostTitle title={topic.title} date={post.created_at} />
           <div dangerouslySetInnerHTML={{ __html: post.cooked.split('\n')[0] }} />
           <Link href={`/posts/${topic.slug}`}>
-            <a className={styles.continueReadingLink}>Continue reading</a>
+            <a>Continue reading</a>
           </Link>
         </React.Fragment>
       ))}

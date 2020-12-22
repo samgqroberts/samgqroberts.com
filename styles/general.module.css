@@ -33,11 +33,5 @@
   height: 140px;
   display: block;
   border-radius: 50%;
-}
-
-.continueReadingLink {
-  text-decoration: none;
-}
-.continueReadingLink:hover {
-  text-decoration: underline !important;
+  margin-bottom: 16px;
 }
