@@ -1,10 +1,9 @@
 import Head from 'next/head';
 import { blogClientFromEnvOrThrow } from '../scripts/blogClient/BlogClient.factory';
-import { TopicItem } from '../scripts/blogClient/types';
-import Menu from '../scripts/Menu';
 import Content from '../scripts/Content';
-import styles from '../styles/general.module.css';
+import Menu from '../scripts/Menu';
 import TopicList, { TopicAndFirstPost } from '../scripts/TopicList';
+import styles from '../styles/general.module.css';
 
 export default function Home({ topicsAndPosts }: {
   topicsAndPosts: TopicAndFirstPost[]

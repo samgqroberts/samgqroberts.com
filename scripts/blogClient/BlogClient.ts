@@ -54,7 +54,7 @@ export default class BlogClient {
         return this.fetch<CategoryResponse>(`c/${MblogCategoryId.valueOrThrow()}.json`)
           .then(categoryResponse => categoryResponse.topic_list.topics)
           .then(topics => topics.filter(t => !t.tags?.includes(this.DISCOURSE_ONLY_TAG)))
-          .then(topics => topics.sort((t1, t2) => t1.created_at.localeCompare(t2.created_at)))
+          .then(topics => topics.sort((t1, t2) => t2.created_at.localeCompare(t1.created_at)))
           .then(topics => some(topics));
       }
       return none<TopicItem[]>();

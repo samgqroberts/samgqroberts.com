@@ -1,5 +1,6 @@
 import React from "react";
 import { Post, TopicItem } from "./blogClient/types";
+import PostTitle from "./PostTitle";
 
 export interface TopicAndFirstPost {
   topic: TopicItem
@@ -13,7 +14,7 @@ export default function TopicList({ topicsAndPosts }: {
     <React.Fragment>
       {topicsAndPosts.map(({ topic, post }) => (
         <React.Fragment>
-          <h1>{topic.title}</h1>
+          <PostTitle title={topic.title} date={post.created_at} />
           <div dangerouslySetInnerHTML={{ __html: post.cooked }} />
         </React.Fragment>
       ))}
