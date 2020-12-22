@@ -25,3 +25,19 @@
   margin-top: -14px;
   color: #707070;
 }
+
+.headshotLink {
+  margin: 0 auto;
+  width: 140px;
+  overflow: hidden;
+  height: 140px;
+  display: block;
+  border-radius: 50%;
+}
+
+.continueReadingLink {
+  text-decoration: none;
+}
+.continueReadingLink:hover {
+  text-decoration: underline !important;
+}

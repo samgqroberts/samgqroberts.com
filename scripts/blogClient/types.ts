@@ -24,6 +24,15 @@ export interface TopicItem {
   tags?: string[] | undefined
 }
 
+export interface TopicResponse {
+  post_stream: PostStream
+  id: number
+  title: string
+  created_at: string
+  slug: string
+  tags?: string[] | undefined
+}
+
 export interface TopicList {
   topics: TopicItem[]
 }

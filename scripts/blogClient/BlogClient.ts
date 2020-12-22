@@ -1,5 +1,6 @@
 import { maybe, Maybe, none, some } from "typescript-monads";
-import { CategoriesResponse, CategoryResponse, Post, TopicItem, TopicPostsResponse } from "./types";
+import { TopicAndFirstPost } from "../TopicList";
+import { CategoriesResponse, CategoryResponse, Post, TopicItem, TopicPostsResponse, TopicResponse } from "./types";
 
 export default class BlogClient {
   readonly BLOG_CATEGORY_NAME = 'blog';
@@ -64,5 +65,18 @@ export default class BlogClient {
   getFirstPostForTopic(topicId: number): Promise<Post> {
     return this.fetch<TopicPostsResponse>(`t/${topicId}/posts.json`)
       .then(r => r.post_stream.posts.find(p => p.post_number === 1))
+  }
+
+  getTopicAndPostBySlug(slug: string): Promise<TopicAndFirstPost> {
+    return this.fetch<TopicResponse>(`t/${slug}.json`)
+      .then(topic => ({
+        topic,
+        post: topic.post_stream.posts.find(p => p.post_number === 1)
+      }))
+  }
+
+  async getAllBlogPostSlugs(): Promise<string[]> {
+    const blogTopics = (await this.getBlogTopics()).valueOrThrow('Could not get blog topics')
+    return blogTopics.map(t => t.slug);
   }
 }
