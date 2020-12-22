@@ -1,5 +1,5 @@
 import { maybe, Maybe, none, some } from "typescript-monads";
-import { CategoriesResponse, CategoryResponse, TopicItem } from "./types";
+import { CategoriesResponse, CategoryResponse, Post, TopicItem, TopicPostsResponse } from "./types";
 
 export default class BlogClient {
   readonly BLOG_CATEGORY_NAME = 'blog';
@@ -54,9 +54,15 @@ export default class BlogClient {
         return this.fetch<CategoryResponse>(`c/${MblogCategoryId.valueOrThrow()}.json`)
           .then(categoryResponse => categoryResponse.topic_list.topics)
           .then(topics => topics.filter(t => !t.tags?.includes(this.DISCOURSE_ONLY_TAG)))
+          .then(topics => topics.sort((t1, t2) => t1.created_at.localeCompare(t2.created_at)))
           .then(topics => some(topics));
       }
       return none<TopicItem[]>();
     });
+  }
+
+  getFirstPostForTopic(topicId: number): Promise<Post> {
+    return this.fetch<TopicPostsResponse>(`t/${topicId}/posts.json`)
+      .then(r => r.post_stream.posts.find(p => p.post_number === 1))
   }
 }

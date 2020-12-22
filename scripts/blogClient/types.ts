@@ -20,6 +20,7 @@ export interface TopicItem {
   id: number
   title: string
   slug: string
+  created_at: string
   tags?: string[] | undefined
 }
 
@@ -29,4 +30,22 @@ export interface TopicList {
 
 export interface CategoryResponse {
   topic_list: TopicList
+}
+
+export interface Post {
+  id: number
+  name: string
+  username: string
+  created_at: string
+  updated_at: string
+  cooked: string
+  post_number: number
+}
+
+export interface PostStream {
+  posts: Post[]
+}
+
+export interface TopicPostsResponse {
+  post_stream: PostStream
 }

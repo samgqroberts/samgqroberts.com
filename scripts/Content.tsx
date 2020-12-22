@@ -1,13 +1,11 @@
 import styles from '../styles/general.module.css';
 
-export default function Content({ }: {
-
+export default function Content({ children }: {
+  children: React.ReactNode,
 }) {
   return (
     <div className={styles.contentContainer}>
-      <h1>Some content title</h1>
-      <p>Some content paragraph</p>
-      <p>Another content paragraph</p>
+      {children}
     </div>
   );
 }
