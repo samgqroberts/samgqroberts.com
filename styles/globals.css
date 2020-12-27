@@ -20,3 +20,8 @@ a {
 a:hover {
   text-decoration: underline !important;
 }
+
+/* image titles come in these containers, and we don't want to render them! */
+div.meta {
+  display: none
+}

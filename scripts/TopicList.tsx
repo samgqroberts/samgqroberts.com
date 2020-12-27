@@ -15,7 +15,7 @@ export default function TopicList({ topicsAndPosts }: {
   return (
     <React.Fragment>
       {topicsAndPosts.map(({ topic, post }) => (
-        <React.Fragment>
+        <React.Fragment key={topic.slug}>
           <PostTitle title={topic.title} date={post.created_at} />
           <div dangerouslySetInnerHTML={{ __html: post.cooked.split('\n')[0] }} />
           <Link href={`/posts/${topic.slug}`}>
