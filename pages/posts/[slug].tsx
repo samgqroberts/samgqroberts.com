@@ -1,19 +1,21 @@
+import { GetStaticPaths, GetStaticProps } from 'next';
 import Head from 'next/head';
-import { TopicAndFirstPost } from '../../scripts/TopicList';
+
 import { blogClientFromEnvOrThrow } from '../../scripts/blogClient/BlogClient.factory';
 import Content from '../../scripts/Content';
 import Menu from '../../scripts/Menu';
-import styles from '../../styles/general.module.css';
 import PostTitle from '../../scripts/PostTitle';
+import { TopicAndFirstPost } from '../../scripts/TopicList';
+import styles from '../../styles/general.module.css';
 
-export default function Post({ topicAndPost }: {
-  topicAndPost: TopicAndFirstPost
-}) {
-  const { topic, post } = topicAndPost
+const Post: React.FC<{
+  topicAndPost: TopicAndFirstPost;
+}> = ({ topicAndPost }) => {
+  const { topic, post } = topicAndPost;
   return (
     <div className={styles.container}>
       <Head>
-        <title>Sam Roberts' personal website</title>
+        <title>Sam Roberts&apos; personal website</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Menu />
@@ -22,28 +24,31 @@ export default function Post({ topicAndPost }: {
         <div dangerouslySetInnerHTML={{ __html: post.cooked }} />
       </Content>
     </div>
-  )
-}
+  );
+};
+export default Post;
 
-export async function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = async () => {
   const blogClient = blogClientFromEnvOrThrow();
   const slugs = await blogClient.getAllBlogPostSlugs();
   return {
-    paths: slugs.map(slug => ({
+    paths: slugs.map((slug) => ({
       params: {
-        slug,
+        slug
       }
     })),
-    fallback: false,
+    fallback: false
   };
-}
+};
 
-export async function getStaticProps({ params }) {
+export const getStaticProps: GetStaticProps = async ({ params }) => {
   const blogClient = blogClientFromEnvOrThrow();
-  const topicAndPost = await blogClient.getTopicAndPostBySlug(params.slug);
+  const topicAndPost = await blogClient.getTopicAndPostBySlug(
+    String(params.slug)
+  );
   return {
     props: {
       topicAndPost
     }
-  }
-}
+  };
+};

@@ -1,17 +1,17 @@
-import React from "react";
-import styles from '../styles/general.module.css';
 import { format } from 'date-fns';
+import React from 'react';
 
-export default function PostTitle({ title, date }: {
-  title: string
-  date: string
- }) {
+import styles from '../styles/general.module.css';
+
+const PostTitle: React.FC<{
+  title: string;
+  date: string;
+}> = ({ title, date }) => {
   return (
-    <React.Fragment>
+    <>
       <h1>{title}</h1>
-      <div className={styles.date}>
-        {format(new Date(date), 'yyyy MMMM d')}
-      </div>
-    </React.Fragment>
-  )
-}
+      <div className={styles.date}>{format(new Date(date), 'yyyy MMMM d')}</div>
+    </>
+  );
+};
+export default PostTitle;
