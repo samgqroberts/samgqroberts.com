@@ -25,3 +25,12 @@ a:hover {
 div.meta {
   display: none
 }
+/* make sure img components don't overflow the container */
+a.lightbox img {
+  height: auto;
+  width: 100%;
+}
+/* long words in the headers can overflow the container, so break them if it comes to that */
+h1, h2, h3, h4 {
+  overflow-wrap: break-word;
+}
