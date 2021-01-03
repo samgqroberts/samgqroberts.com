@@ -63,6 +63,59 @@
   display: block; /* ensures `padding` style takes effect */
 }
 
+/* only apply the following styles if the screen (or browser window) is at least 700px wide */
+@media only screen and (min-width: 700px) {
+  .container {
+    flex-direction: row; /* overrides small-screen style - now our top navbar is a left sidebar! */
+    /* prevent left sidebar and content from expanding past 1000px.
+       note that this coupled with the media query means that the container will scale
+       with screen size between 700px to 1000px.
+       using percentage-based widths for child elements will mean they scale with this container. */
+    max-width: 1000px; /* prevent left sidebar and content from expanding past 1000px */
+    margin: 0 auto; /* centers left sidebar and content (takes effect if screen is over 1000px) */
+    /* puts remaining horizontal space in container that sidebar or content don't take up
+       between them */
+    justify-content: space-between;
+    padding: 30px 20px 30px; /* gives a little breathing room from edges of screen */
+  }
+
+  .menuContainer {
+    height: fit-content; /* overrides small-screen fixed height */
+    width: 25%; /* ensures left sidebar takes up 25% of container */
+    background: inherit; /* overrides small-screen background color */
+    flex-direction: column; /* overrides small-screen layout - now elements flow go top to bottom */
+  }
+
+  .contentContainer {
+    /* now content container has fixed width relative to container.
+       note that 5% of the container's width is not taken up by sidebar or content.
+       this gives (scaling) padding between sidebar and content. */
+    width: 70%; 
+  }
+
+  .headshotContainer {
+    height: 140px; /* ensures the headshot is 140x140 (width follows height automatically) */
+  }
+
+  .nav {
+    position: relative; /* the nav menu will now flow with the other elements within the left sidebar */
+    top: inherit; /* the nav menu is no longer anchored to the top navbar (it flows) */
+    max-height: inherit; /* the nav menu no longer needs to control max-height - it will never transition in or out */
+    background: inherit; /* removes the background color that was meant to match the top navbar */
+  }
+
+  .navMenu a {
+    font-weight: normal; /* resets nav menu link font weight from small screen-specific bold style */
+    color: revert; /* ensures color is now set by nature as a link (blue / purple) instead of small screen black */
+    padding: inherit; /* removes small-screen specific padding that the links had in the nav menu */
+    display: inherit; /* links no longer need to be blocks (no longer need padding) */
+  }
+
+  .menuIcon, .homeLink, .nav hr {
+    display: none; /* these elements only apply to small screen form of nav bar / menu */
+  }
+}
+
 .contentContainer {
   padding: 0 14px; /* makes sure text and images don't sit directly against sides of screen */
 }
