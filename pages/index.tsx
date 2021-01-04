@@ -1,7 +1,7 @@
 import { GetStaticProps } from 'next';
 
 import { blogClientFromEnvOrThrow } from '../scripts/blogClient/BlogClient.factory';
-import Page from '../scripts/Page';
+import Page from '../scripts/page/Page';
 import TopicList, { TopicAndFirstPost } from '../scripts/TopicList';
 
 const Home: React.FC<{

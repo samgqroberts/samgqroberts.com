@@ -2,18 +2,24 @@ import classNames from 'classnames';
 import Image from 'next/image';
 import { useRef, useState } from 'react';
 
-import styles from '../styles/general.module.css';
-import MenuIcon from './MenuIcon';
-import useOnClickOutside from './useOnClickOutside';
+import MenuIcon from '../MenuIcon';
+import useOnClickOutside from '../useOnClickOutside';
+import styles from './page.module.css';
 
-const Menu: React.FC = () => {
-  const [menuOpen, setMenuOpen] = useState<boolean>(false);
+/**
+ * Responsive container for context and navigation links.
+ * On small screens, will display as a "top navbar" at the top of the screen, above the content.
+ *   In this case, will hide links within an expandable "nav menu."
+ * On larger screens, will display as a "left sidebar" to the left of the content.
+ */
+const NavBar: React.FC = () => {
+  const [navMenuOpen, setNavMenuOpen] = useState<boolean>(false);
 
-  const navWrapperRef = useRef<HTMLElement>(null);
+  const navMenuWrapperRef = useRef<HTMLElement>(null);
   const menuIconWrapperRef = useRef<SVGSVGElement>(null);
   useOnClickOutside(
-    () => setMenuOpen(false),
-    navWrapperRef,
+    () => setNavMenuOpen(false),
+    navMenuWrapperRef,
     // include the menu icon itself, to avoid case where clicking menu icon
     // triggers this onClickOutside, closing the menu, then the menu icon click
     // registers, opening the menu again.
@@ -21,22 +27,24 @@ const Menu: React.FC = () => {
   );
 
   return (
-    <div className={styles.menuContainer}>
+    <div className={styles.navbar}>
       <div className={styles.headshotContainer}>
-        <a href="/" className={styles.headshotLink}>
+        <a href="/">
           <Image src="/headshot.png" alt="In fact, me!" unsized />
         </a>
       </div>
       <MenuIcon
         ref={menuIconWrapperRef}
         className={styles.menuIcon}
-        onClick={() => setMenuOpen(!menuOpen)}
+        onClick={() => setNavMenuOpen(!navMenuOpen)}
       />
       <nav
-        ref={navWrapperRef}
-        className={classNames(styles.nav, { [styles.menuOpen]: menuOpen })}
+        ref={navMenuWrapperRef}
+        className={classNames(styles.navMenu, {
+          [styles.menuOpen]: navMenuOpen
+        })}
       >
-        <ul className={styles.navMenu}>
+        <ul>
           <li className={styles.homeLink}>
             <a href="/">Home</a>
           </li>
@@ -61,4 +69,4 @@ const Menu: React.FC = () => {
     </div>
   );
 };
-export default Menu;
+export default NavBar;

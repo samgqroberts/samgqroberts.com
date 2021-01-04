@@ -1,19 +1,22 @@
 import Head from 'next/head';
 
-import styles from '../styles/general.module.css';
-import Menu from './Menu';
+import NavBar from './NavBar';
+import styles from './page.module.css';
 
+/**
+ * General page layout containing NavBar and page-specific content.
+ */
 const Page: React.FC<{
   children: React.ReactNode;
 }> = ({ children }) => {
   return (
-    <div className={styles.container}>
+    <div className={styles.page}>
       <Head>
         <title>Sam Roberts&apos; personal website</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Menu />
-      <div className={styles.contentContainer}>{children}</div>
+      <NavBar />
+      <div className={styles.content}>{children}</div>
     </div>
   );
 };

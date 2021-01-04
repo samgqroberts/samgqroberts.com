@@ -1,7 +1,7 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
 
 import { blogClientFromEnvOrThrow } from '../../scripts/blogClient/BlogClient.factory';
-import Page from '../../scripts/Page';
+import Page from '../../scripts/page/Page';
 import PostTitle from '../../scripts/PostTitle';
 import { TopicAndFirstPost } from '../../scripts/TopicList';
 

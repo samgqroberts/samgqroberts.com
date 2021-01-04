@@ -1,0 +1,121 @@
+.page {
+  display: flex; /* for general layout purposes, can't beat flexbox */
+  flex-direction: column; /* navbar on top, page content below */
+}
+
+.content {
+  padding: 0 14px; /* makes sure text and images don't sit directly against sides of screen */
+}
+
+.navbar {
+  height: 40px; /* simple - set the height of the top navbar */
+  display: flex; /* again, prefer flexbox for layout */
+  justify-content: space-between; /* pushes headshot to far left, menu icon to far right */
+  align-items: center; /* centers headshot and menu icon vertically */
+  padding: 0 10px; /* adds horizontal padding, pushing headshot and menu icon a bit toward center */
+}
+
+.navbar, .navMenu {
+  background: #bec1cc; /* a nice background color for the top navbar and expanded nav menu */
+}
+
+/* all nested elements related to the headshot picture */
+.headshotContainer, .headshotContainer a, .headshotContainer div, .headshotContainer img {
+  /* directly sets the height of each of these elements in relation to container.
+     in effect: ensures headshot picture resizes to stay within top navbar.
+     delegates pixel-height setting to ultimate container (top navbar) */
+  height: 100%;
+  display: block; /* ensures <a /> and <img />s respect the given height */
+}
+.headshotContainer {
+  padding: 4px; /* ensures headshot picture doesn't directly touch top or bottom of navbar */
+}
+
+.menuIcon {
+  margin-right: 4px; /* gives menu icon equal amount of space from RHS of navbar as headshot has from LHS */
+}
+
+.navMenu {
+  position: absolute; /* this element won't flow with or push other page elements */
+  top: 40px; /* anchors the top of the expandable nav menu to the bottom of the top navbar */
+  left: 0; /* together with right, ensures nav menu takes up entire width of screen */
+  right: 0; /* together with left, ensures nav menu takes up entire width of screen */
+  text-align: center; /* centers the text horizontally */
+  overflow: hidden; /* ensures the unexpanded nav menu's children (the links) don't appear */
+  /* ensures the unexpanded nav menu does not appear (has no height).
+     this is preferred over using `display: none` because this gives us a basis for a transition. */
+  max-height: 0;
+  /* whenever max-height changes (the nav menu expands or collapses),
+     animate the change over 0.3 seconds */
+  transition: max-height 0.3s;
+}
+.navMenu.menuOpen {
+  /* give the nav menu a max-height approximately, but a little bigger than, the fully expanded height.
+     this, together with `max-height` and `transition` above will animate opening and closing
+     the nav menu. */
+  max-height: 220px;
+}
+
+.navMenu ul {
+  list-style-type: none; /* removes bullet points from the beginning of each list item in the nav menu */
+  padding: 0 10px; /* gives a little more horizontal room for the list of nav links */
+}
+.navMenu a {
+  font-weight: bold; /* simple: makes the nav menu links bold */
+  color: black; /* simple: makes the text of the nav menu links black */
+  padding: 10px 0; /* gives more vertical space (and therefore click/touch area) to each nav menu link */
+  display: block; /* ensures `padding` style takes effect */
+}
+
+/* only apply the following styles if the screen (or browser window) is at least 700px wide */
+@media only screen and (min-width: 700px) {
+  .page {
+    flex-direction: row; /* overrides small-screen style - now our top navbar is a left sidebar! */
+    /* prevent left sidebar and content from expanding past 1000px.
+       note that this coupled with the media query means that the container will scale
+       with screen size between 700px to 1000px.
+       using percentage-based widths for child elements will mean they scale with this container. */
+    max-width: 1000px; /* prevent left sidebar and content from expanding past 1000px */
+    margin: 0 auto; /* centers left sidebar and content (takes effect if screen is over 1000px) */
+    /* puts remaining horizontal space in container that sidebar or content don't take up
+       between them */
+    justify-content: space-between;
+    padding: 30px 20px 30px; /* gives a little breathing room from edges of screen */
+  }
+
+  .navbar {
+    height: fit-content; /* overrides small-screen fixed height */
+    width: 25%; /* ensures left sidebar takes up 25% of container */
+    background: inherit; /* overrides small-screen background color */
+    flex-direction: column; /* overrides small-screen layout - now elements flow go top to bottom */
+  }
+
+  .content {
+    /* now content container has fixed width relative to container.
+       note that 5% of the container's width is not taken up by sidebar or content.
+       this gives (scaling) padding between sidebar and content. */
+    width: 70%; 
+  }
+
+  .headshotContainer {
+    height: 140px; /* ensures the headshot is 140x140 (width follows height automatically) */
+  }
+
+  .navMenu {
+    position: relative; /* the nav menu will now flow with the other elements within the left sidebar */
+    top: inherit; /* the nav menu is no longer anchored to the top navbar (it flows) */
+    max-height: inherit; /* the nav menu no longer needs to control max-height - it will never transition in or out */
+    background: inherit; /* removes the background color that was meant to match the top navbar */
+  }
+
+  .navMenu a {
+    font-weight: normal; /* resets nav menu link font weight from small screen-specific bold style */
+    color: revert; /* ensures color is now set by nature as a link (blue / purple) instead of small screen black */
+    padding: inherit; /* removes small-screen specific padding that the links had in the nav menu */
+    display: inherit; /* links no longer need to be blocks (no longer need padding) */
+  }
+
+  .menuIcon, .homeLink, .nav hr {
+    display: none; /* these elements only apply to small screen form of navbar / nav menu */
+  }
+}
