@@ -10,6 +10,7 @@
     "lint.validateOnly": "eslint ."
   },
   "dependencies": {
+    "classnames": "^2.2.6",
     "date-fns": "^2.16.1",
     "next": "10.0.0",
     "predicates": "^2.0.3",

@@ -1,29 +1,19 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
-import Head from 'next/head';
 
 import { blogClientFromEnvOrThrow } from '../../scripts/blogClient/BlogClient.factory';
-import Content from '../../scripts/Content';
-import Menu from '../../scripts/Menu';
+import Page from '../../scripts/page/Page';
 import PostTitle from '../../scripts/PostTitle';
 import { TopicAndFirstPost } from '../../scripts/TopicList';
-import styles from '../../styles/general.module.css';
 
 const Post: React.FC<{
   topicAndPost: TopicAndFirstPost;
 }> = ({ topicAndPost }) => {
   const { topic, post } = topicAndPost;
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Sam Roberts&apos; personal website</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <Menu />
-      <Content>
-        <PostTitle title={topic.title} date={post.created_at} />
-        <div dangerouslySetInnerHTML={{ __html: post.cooked }} />
-      </Content>
-    </div>
+    <Page>
+      <PostTitle title={topic.title} date={post.created_at} />
+      <div dangerouslySetInnerHTML={{ __html: post.cooked }} />
+    </Page>
   );
 };
 export default Post;
