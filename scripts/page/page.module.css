@@ -115,7 +115,7 @@
     display: inherit; /* links no longer need to be blocks (no longer need padding) */
   }
 
-  .menuIcon, .homeLink, .nav hr {
+  .menuIcon, .homeLink, .navMenu hr {
     display: none; /* these elements only apply to small screen form of navbar / nav menu */
   }
 }
