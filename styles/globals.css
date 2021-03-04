@@ -32,6 +32,11 @@ a.lightbox img, p img {
   margin: 0 auto;
   display: block;
 }
+img.emoji {
+  margin: 0;
+  display: initial;
+  height: 1em;
+}
 /* long words in the headers can overflow the container, so break them if it comes to that */
 h1, h2, h3, h4 {
   overflow-wrap: break-word;
