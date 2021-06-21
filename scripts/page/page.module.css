@@ -107,7 +107,7 @@
     /* now content container has fixed width relative to container.
        note that 5% of the container's width is not taken up by sidebar or content.
        this gives (scaling) padding between sidebar and content. */
-    width: 70%;
+    width: 74%;
   }
 
   .headshotContainer {
