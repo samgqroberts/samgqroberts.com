@@ -1,20 +1,68 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
+import { useEffect, useRef } from 'react';
 
 import { blogClientFromEnvOrThrow } from '../../scripts/blogClient/BlogClient.factory';
 import Page from '../../scripts/page/Page';
 import PostTitle from '../../scripts/PostTitle';
+import { siteUrl } from '../../scripts/rss';
 import { TopicAndFirstPost } from '../../scripts/TopicList';
 import { PageTitle } from '..';
+
+function findHeaderElements(parent: HTMLDivElement): HTMLHeadingElement[] {
+  const headings: HTMLHeadingElement[] = [];
+  parent.childNodes.forEach((node) => {
+    if (node instanceof HTMLHeadingElement) {
+      headings.push(node);
+    }
+  });
+  return headings;
+}
+
+function getHeadingSlug(heading: HTMLHeadingElement): string {
+  let slug = '';
+  const lowerCase = heading.textContent.toLowerCase();
+  for (let i = 0; i < lowerCase.length; i++) {
+    const char = lowerCase.charAt(i);
+    if (char === ' ') {
+      slug += '-';
+    }
+    if (char >= 'a' && char <= 'z') {
+      slug += char;
+    }
+  }
+  return slug;
+}
+
+function getPostUrl(topicSlug: string, headingSlug?: string): string {
+  return `/posts/${topicSlug}#${headingSlug}`;
+}
 
 const Post: React.FC<{
   topicAndPost: TopicAndFirstPost;
 }> = ({ topicAndPost }) => {
+  const content = useRef<HTMLDivElement | null>(null);
   const { topic, post } = topicAndPost;
+  const topicSlug = topic.slug;
+  useEffect(() => {
+    const hash = window.location.hash;
+    findHeaderElements(content.current).forEach((node) => {
+      const headingSlug = getHeadingSlug(node);
+      node.setAttribute('id', getHeadingSlug(node));
+      const anchor = document.createElement('a');
+      anchor.textContent = '#';
+      anchor.setAttribute('href', getPostUrl(topicSlug, headingSlug));
+      anchor.setAttribute('class', 'heading-anchor');
+      node.appendChild(anchor);
+      if (hash && hash.substring(1) === headingSlug) {
+        node.scrollIntoView();
+      }
+    });
+  }, []);
   return (
     <Page>
       <PageTitle>{topic.title}</PageTitle>
       <PostTitle title={topic.title} date={post.created_at} />
-      <div dangerouslySetInnerHTML={{ __html: post.cooked }} />
+      <div ref={content} dangerouslySetInnerHTML={{ __html: post.cooked }} />
     </Page>
   );
 };

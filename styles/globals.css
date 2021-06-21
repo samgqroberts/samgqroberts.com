@@ -43,3 +43,16 @@ h3,
 h4 {
   overflow-wrap: break-word;
 }
+
+.heading-anchor {
+  margin-left: 0.8rem;
+  color: #aaa;
+  visibility: hidden;
+}
+
+h1:hover .heading-anchor,
+h2:hover .heading-anchor,
+h3:hover .heading-anchor,
+h4:hover .heading-anchor {
+  visibility: visible;
+}

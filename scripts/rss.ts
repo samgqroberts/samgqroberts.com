@@ -3,10 +3,10 @@ import { convert } from 'html-to-text';
 import { siteTitle } from '../pages/_document';
 import { getExcerpt, TopicAndFirstPost } from './TopicList';
 
-const blogUrl = 'https://samgqroberts.com';
+export const siteUrl = 'https://samgqroberts.com';
 
 export function generateRssItem({ topic, post }: TopicAndFirstPost): string {
-  const url = `${blogUrl}/posts/${topic.slug}`;
+  const url = `${siteUrl}/posts/${topic.slug}`;
   const title = topic.title;
   const excerpt = convert(getExcerpt(post));
   const content = post.cooked;
@@ -39,10 +39,10 @@ export async function generateRss(
       <channel>
         <title>${siteTitle}</title>
         <description>${siteTitle}</description>
-        <link>${blogUrl}</link>
+        <link>${siteUrl}</link>
         <language>en</language>
         <lastBuildDate>${lastBuildDate}</lastBuildDate>
-        <atom:link href="${blogUrl}" rel="self" type="application/rss+xml" />
+        <atom:link href="${siteUrl}" rel="self" type="application/rss+xml" />
         ${itemsList.join('')}
       </channel>
     </rss>
