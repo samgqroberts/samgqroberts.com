@@ -1,8 +1,9 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
-import { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 import { blogClientFromEnvOrThrow } from '../../scripts/blogClient/BlogClient.factory';
 import Page from '../../scripts/page/Page';
+import PostTitle from '../../scripts/PostTitle';
 import { getExcerpt, TopicAndFirstPost } from '../../scripts/TopicList';
 import { stripHtml } from '../../scripts/util';
 import { PageMeta } from '..';
@@ -64,6 +65,7 @@ const Post: React.FC<{
         description={stripHtml(getExcerpt(post))}
         url={getPostUrl(topic.slug)}
       />
+      <PostTitle title={topic.title} date={post.created_at} />
       <div ref={content} dangerouslySetInnerHTML={{ __html: post.cooked }} />
     </Page>
   );
