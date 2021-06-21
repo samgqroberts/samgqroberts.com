@@ -1,5 +1,3 @@
-import Head from 'next/head';
-
 import NavBar from './NavBar';
 import styles from './page.module.css';
 
@@ -11,10 +9,6 @@ const Page: React.FC<{
 }> = ({ children }) => {
   return (
     <div className={styles.page}>
-      <Head>
-        <title>Sam Roberts&apos; personal website</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
       <NavBar />
       <div className={styles.content}>{children}</div>
     </div>

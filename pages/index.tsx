@@ -1,7 +1,9 @@
+import fs from 'fs';
 import { GetStaticProps } from 'next';
 
 import { blogClientFromEnvOrThrow } from '../scripts/blogClient/BlogClient.factory';
 import Page from '../scripts/page/Page';
+import { generateRss } from '../scripts/rss';
 import TopicList, { TopicAndFirstPost } from '../scripts/TopicList';
 
 const Home: React.FC<{
@@ -27,6 +29,11 @@ export const getStaticProps: GetStaticProps = async () => {
         .then((post) => ({ topic, post }));
     })
   );
+
+  // write rss file
+  const rss = await generateRss(topicsAndPosts);
+  fs.writeFileSync('./public/feed.xml', rss);
+
   return {
     props: {
       topicsAndPosts
