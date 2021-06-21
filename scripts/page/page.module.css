@@ -15,12 +15,16 @@
   padding: 0 10px; /* adds horizontal padding, pushing headshot and menu icon a bit toward center */
 }
 
-.navbar, .navMenu {
+.navbar,
+.navMenu {
   background: #bec1cc; /* a nice background color for the top navbar and expanded nav menu */
 }
 
 /* all nested elements related to the headshot picture */
-.headshotContainer, .headshotContainer a, .headshotContainer div, .headshotContainer img {
+.headshotContainer,
+.headshotContainer a,
+.headshotContainer div,
+.headshotContainer img {
   /* directly sets the height of each of these elements in relation to container.
      in effect: ensures headshot picture resizes to stay within top navbar.
      delegates pixel-height setting to ultimate container (top navbar) */
@@ -85,7 +89,7 @@
 
   .navbar {
     height: fit-content; /* overrides small-screen fixed height */
-    width: 25%; /* ensures left sidebar takes up 25% of container */
+    width: 25%;
     background: inherit; /* overrides small-screen background color */
     flex-direction: column; /* overrides small-screen layout - now elements flow go top to bottom */
   }
@@ -94,7 +98,7 @@
     /* now content container has fixed width relative to container.
        note that 5% of the container's width is not taken up by sidebar or content.
        this gives (scaling) padding between sidebar and content. */
-    width: 70%; 
+    width: 70%;
   }
 
   .headshotContainer {
@@ -106,6 +110,7 @@
     top: inherit; /* the nav menu is no longer anchored to the top navbar (it flows) */
     max-height: inherit; /* the nav menu no longer needs to control max-height - it will never transition in or out */
     background: inherit; /* removes the background color that was meant to match the top navbar */
+    width: 100%;
   }
 
   .navMenu a {
@@ -113,9 +118,37 @@
     color: revert; /* ensures color is now set by nature as a link (blue / purple) instead of small screen black */
     padding: inherit; /* removes small-screen specific padding that the links had in the nav menu */
     display: inherit; /* links no longer need to be blocks (no longer need padding) */
+    text-align: right;
+    display: flex;
+    align-items: center;
+    position: relative;
+    justify-content: center;
+    text-decoration: none !important;
+    font-size: 11px;
+    margin: 2px 0;
   }
 
-  .menuIcon, .homeLink, .navMenu hr {
+  .samgqroberts {
+    text-align: right;
+    font-weight: 600;
+    position: absolute;
+    left: calc(50% + 0.2em);
+  }
+
+  .domain {
+    position: absolute;
+    right: calc(50% + 0.2em);
+  }
+
+  .menuIcon,
+  .homeLink,
+  .navMenu hr {
     display: none; /* these elements only apply to small screen form of navbar / nav menu */
+  }
+}
+
+@media (min-width: 900px) {
+  .navMenu a {
+    font-size: 12px;
   }
 }
