@@ -48,7 +48,7 @@ const NavBar: React.FC = () => {
           <li className={styles.homeLink}>
             <a href="/">Home</a>
           </li>
-          <hr />
+          <hr className={styles.socialsRule} />
           <li>
             <a href="https://twitter.com/samgqroberts">
               <span className={styles.domain}>twitter.com</span>

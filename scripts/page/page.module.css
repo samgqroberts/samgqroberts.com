@@ -17,7 +17,7 @@
 
 .navbar,
 .navMenu {
-  background: #bec1cc; /* a nice background color for the top navbar and expanded nav menu */
+  background: #e5edf3; /* a nice background color for the top navbar and expanded nav menu */
 }
 
 /* all nested elements related to the headshot picture */
@@ -69,6 +69,15 @@
   color: black; /* simple: makes the text of the nav menu links black */
   padding: 10px 0; /* gives more vertical space (and therefore click/touch area) to each nav menu link */
   display: block; /* ensures `padding` style takes effect */
+}
+
+@media (max-width: 700px) {
+  .socialsRule {
+    border: 0;
+    background: #b2b2b2;
+    height: 1px;
+    width: 50%;
+  }
 }
 
 /* only apply the following styles if the screen (or browser window) is at least 700px wide */
@@ -126,6 +135,7 @@
     text-decoration: none !important;
     font-size: 11px;
     margin: 2px 0;
+    color: #008;
   }
 
   .samgqroberts {
@@ -141,9 +151,15 @@
   }
 
   .menuIcon,
-  .homeLink,
-  .navMenu hr {
+  .homeLink {
     display: none; /* these elements only apply to small screen form of navbar / nav menu */
+  }
+
+  .socialsRule {
+    border: 0;
+    background: #e5e5e5;
+    height: 1px;
+    margin: 0 0 15px;
   }
 }
 
