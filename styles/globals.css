@@ -2,11 +2,9 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: 'Work Sans', sans-serif;
   width: 100%;
   height: 100%;
-  background-color: #f5fbff;
   color: #000e17;
 }
 
@@ -23,10 +21,11 @@ a:hover {
 
 /* image titles come in these containers, and we don't want to render them! */
 div.meta {
-  display: none
+  display: none;
 }
 /* make sure img components don't overflow the container */
-a.lightbox img, p img {
+a.lightbox img,
+p img {
   height: auto;
   max-width: 100%;
   margin: 0 auto;
@@ -38,6 +37,9 @@ img.emoji {
   height: 1em;
 }
 /* long words in the headers can overflow the container, so break them if it comes to that */
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
   overflow-wrap: break-word;
 }

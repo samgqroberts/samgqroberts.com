@@ -48,20 +48,26 @@ const NavBar: React.FC = () => {
           <li className={styles.homeLink}>
             <a href="/">Home</a>
           </li>
-          <hr />
+          <hr className={styles.socialsRule} />
           <li>
             <a href="https://twitter.com/samgqroberts">
-              twitter.com/samgqroberts
+              <span className={styles.domain}>twitter.com</span>
+              <span className={styles.slash}>/</span>
+              <span className={styles.samgqroberts}>samgqroberts</span>
             </a>
           </li>
           <li>
             <a href="https://github.com/samgqroberts">
-              github.com/samgqroberts
+              <span className={styles.domain}>github.com</span>
+              <span className={styles.slash}>/</span>
+              <span className={styles.samgqroberts}>samgqroberts</span>
             </a>
           </li>
           <li>
             <a href="https://www.linkedin.com/in/samgqroberts">
-              linkedin.com/in/samgqroberts
+              <span className={styles.domain}>linkedin.com</span>
+              <span className={styles.slash}>/</span>
+              <span className={styles.samgqroberts}>samgqroberts</span>
             </a>
           </li>
         </ul>
