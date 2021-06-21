@@ -1,16 +1,24 @@
 import fs from 'fs';
 import { GetStaticProps } from 'next';
+import Head from 'next/head';
 
 import { blogClientFromEnvOrThrow } from '../scripts/blogClient/BlogClient.factory';
 import Page from '../scripts/page/Page';
 import { generateRss } from '../scripts/rss';
 import TopicList, { TopicAndFirstPost } from '../scripts/TopicList';
 
+export const PageTitle: React.FC = ({ children }) => (
+  <Head>
+    <title>{children} &middot; Sam Roberts</title>
+  </Head>
+);
+
 const Home: React.FC<{
   topicsAndPosts: TopicAndFirstPost[];
 }> = ({ topicsAndPosts }) => {
   return (
     <Page>
+      <PageTitle>Home</PageTitle>
       <TopicList {...{ topicsAndPosts }} />
     </Page>
   );

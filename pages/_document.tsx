@@ -7,7 +7,6 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <title>{siteTitle}</title>
           <link rel="icon" href="/favicon.ico" />
           <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link

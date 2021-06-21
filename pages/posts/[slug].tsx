@@ -4,6 +4,7 @@ import { blogClientFromEnvOrThrow } from '../../scripts/blogClient/BlogClient.fa
 import Page from '../../scripts/page/Page';
 import PostTitle from '../../scripts/PostTitle';
 import { TopicAndFirstPost } from '../../scripts/TopicList';
+import { PageTitle } from '..';
 
 const Post: React.FC<{
   topicAndPost: TopicAndFirstPost;
@@ -11,6 +12,7 @@ const Post: React.FC<{
   const { topic, post } = topicAndPost;
   return (
     <Page>
+      <PageTitle>{topic.title}</PageTitle>
       <PostTitle title={topic.title} date={post.created_at} />
       <div dangerouslySetInnerHTML={{ __html: post.cooked }} />
     </Page>
