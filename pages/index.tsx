@@ -4,12 +4,20 @@ import Head from 'next/head';
 
 import { blogClientFromEnvOrThrow } from '../scripts/blogClient/BlogClient.factory';
 import Page from '../scripts/page/Page';
-import { generateRss } from '../scripts/rss';
+import { generateRss, siteUrl } from '../scripts/rss';
 import TopicList, { TopicAndFirstPost } from '../scripts/TopicList';
 
-export const PageTitle: React.FC = ({ children }) => (
+export const PageMeta: React.FC<{
+  title: string;
+  description: string;
+  url: string;
+}> = ({ title, description, url }) => (
   <Head>
-    <title>{children} &middot; Sam Roberts</title>
+    <title>{title} &middot; Sam Roberts</title>
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={url} />
+    <meta property="og:image" content="/headshot.png" />
   </Head>
 );
 
@@ -18,7 +26,11 @@ const Home: React.FC<{
 }> = ({ topicsAndPosts }) => {
   return (
     <Page>
-      <PageTitle>Home</PageTitle>
+      <PageMeta
+        title="Home"
+        description="Sam Roberts' personal website"
+        url={siteUrl}
+      />
       <TopicList {...{ topicsAndPosts }} />
     </Page>
   );

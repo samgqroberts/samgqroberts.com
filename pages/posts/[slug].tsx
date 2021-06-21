@@ -3,10 +3,9 @@ import { useEffect, useRef } from 'react';
 
 import { blogClientFromEnvOrThrow } from '../../scripts/blogClient/BlogClient.factory';
 import Page from '../../scripts/page/Page';
-import PostTitle from '../../scripts/PostTitle';
-import { siteUrl } from '../../scripts/rss';
-import { TopicAndFirstPost } from '../../scripts/TopicList';
-import { PageTitle } from '..';
+import { getExcerpt, TopicAndFirstPost } from '../../scripts/TopicList';
+import { stripHtml } from '../../scripts/util';
+import { PageMeta } from '..';
 
 function findHeaderElements(parent: HTMLDivElement): HTMLHeadingElement[] {
   const headings: HTMLHeadingElement[] = [];
@@ -60,8 +59,11 @@ const Post: React.FC<{
   }, []);
   return (
     <Page>
-      <PageTitle>{topic.title}</PageTitle>
-      <PostTitle title={topic.title} date={post.created_at} />
+      <PageMeta
+        title={topic.title}
+        description={stripHtml(getExcerpt(post))}
+        url={getPostUrl(topic.slug)}
+      />
       <div ref={content} dangerouslySetInnerHTML={{ __html: post.cooked }} />
     </Page>
   );

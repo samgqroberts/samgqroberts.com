@@ -1,14 +1,13 @@
-import { convert } from 'html-to-text';
-
 import { siteTitle } from '../pages/_document';
 import { getExcerpt, TopicAndFirstPost } from './TopicList';
+import { stripHtml } from './util';
 
 export const siteUrl = 'https://samgqroberts.com';
 
 export function generateRssItem({ topic, post }: TopicAndFirstPost): string {
   const url = `${siteUrl}/posts/${topic.slug}`;
   const title = topic.title;
-  const excerpt = convert(getExcerpt(post));
+  const excerpt = stripHtml(getExcerpt(post));
   const content = post.cooked;
   const pubDate = new Date(topic.created_at).toUTCString();
 
