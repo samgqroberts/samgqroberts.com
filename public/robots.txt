@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://samgqroberts.com
+
+# Sitemaps
+Sitemap: https://samgqroberts.com/sitemap.xml
