@@ -57,7 +57,7 @@
   /* give the nav menu a max-height approximately, but a little bigger than, the fully expanded height.
      this, together with `max-height` and `transition` above will animate opening and closing
      the nav menu. */
-  max-height: 220px;
+  max-height: 260px;
 }
 
 .navMenu ul {
@@ -72,11 +72,14 @@
 }
 
 @media (max-width: 700px) {
-  .socialsRule {
+  .socialsRule, .rssRule {
     border: 0;
     background: #b2b2b2;
     height: 1px;
     width: 50%;
+  }
+  .rssRule {
+    margin: 10px auto 9px;
   }
 }
 
@@ -155,11 +158,17 @@
     display: none; /* these elements only apply to small screen form of navbar / nav menu */
   }
 
-  .socialsRule {
+  .socialsRule, .rssRule {
     border: 0;
     background: #e5e5e5;
     height: 1px;
+  }
+  .socialsRule {
     margin: 0 0 15px;
+  }
+  .rssRule {
+    width: 50%;
+    margin: 10px auto 9px;
   }
 }
 

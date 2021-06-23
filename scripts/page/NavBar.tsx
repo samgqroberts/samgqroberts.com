@@ -70,6 +70,12 @@ const NavBar: React.FC = () => {
               <span className={styles.samgqroberts}>samgqroberts</span>
             </a>
           </li>
+          <hr className={styles.rssRule} />
+          <li>
+            <a href="/feed.xml" className={styles.rssLink}>
+              RSS
+            </a>
+          </li>
         </ul>
       </nav>
     </div>

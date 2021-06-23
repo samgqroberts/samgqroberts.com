@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "next-sitemap",
     "start": "next start",
     "lint": "eslint . --fix",
     "lint.validateOnly": "eslint ."
@@ -31,6 +32,7 @@
     "eslint-plugin-react": "^7.22.0",
     "eslint-plugin-react-hooks": "^4.0.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
+    "next-sitemap": "^1.6.124",
     "prettier": "^2.2.1",
     "typescript": "^4.1.3",
     "undefined": "^0.1.0"
