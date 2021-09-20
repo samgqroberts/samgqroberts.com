@@ -7,18 +7,35 @@ interface RequiredEnv {
 }
 
 export function getEnv(): Result<RequiredEnv, string> {
-  const { DISCOURSE_API_KEY, DISCOURSE_BASE_URL } = process.env;
-
-  if (!is.string(DISCOURSE_API_KEY) || !is.string(DISCOURSE_BASE_URL)) {
+  const retrievedValues: Partial<RequiredEnv> = {};
+  const expectedStrings: (keyof RequiredEnv)[] = [
+    'DISCOURSE_API_KEY',
+    'DISCOURSE_BASE_URL'
+  ];
+  const missingStrings: (keyof RequiredEnv)[] = [];
+  expectedStrings.forEach((key) => {
+    const value = process.env[key];
+    console.log({ key, value, missingStrings });
+    if (!is.string(value)) {
+      missingStrings.push(key);
+    } else {
+      retrievedValues[key] = value;
+    }
+  });
+  if (missingStrings.length) {
     return fail(
-      `DISCOURSE_API_KEY or DISCOURSE_BASE_URL not accessible as strings in the environment. Found: ${JSON.stringify(
-        { DISCOURSE_API_KEY, DISCOURSE_BASE_URL }
-      )}`
+      `${missingStrings.join(
+        ', '
+      )} not accessible as strings in the environment.`
     );
   }
-  return ok({ DISCOURSE_API_KEY, DISCOURSE_BASE_URL });
+  return ok(retrievedValues as RequiredEnv);
 }
 
 export function getEnvOrThrow(): RequiredEnv {
-  return getEnv().unwrap();
+  const result = getEnv();
+  if (result.isFail()) {
+    throw result.unwrapFail();
+  }
+  return result.unwrap();
 }
