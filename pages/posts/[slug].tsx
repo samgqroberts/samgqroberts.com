@@ -58,6 +58,22 @@ const Post: React.FC<{
       }
     });
   }, []);
+  useEffect(() => {
+    // @ts-expect-error discourse embed
+    window.DiscourseEmbed = {
+      discourseUrl: 'https://blog.samgqroberts.com/',
+      topicId: topic.id
+    };
+    const d = document.createElement('script');
+    d.type = 'text/javascript';
+    d.async = true;
+    // @ts-expect-error discourse embed
+    d.src = window.DiscourseEmbed.discourseUrl + 'javascripts/embed.js';
+    (
+      document.getElementsByTagName('head')[0] ||
+      document.getElementsByTagName('body')[0]
+    ).appendChild(d);
+  }, []);
   return (
     <Page>
       <PageMeta
@@ -67,6 +83,7 @@ const Post: React.FC<{
       />
       <PostTitle title={topic.title} date={post.created_at} />
       <div ref={content} dangerouslySetInnerHTML={{ __html: post.cooked }} />
+      <div id="discourse-comments"></div>
     </Page>
   );
 };
