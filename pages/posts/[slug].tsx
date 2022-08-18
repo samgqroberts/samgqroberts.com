@@ -61,7 +61,7 @@ const Post: React.FC<{
   useEffect(() => {
     // @ts-expect-error discourse embed
     window.DiscourseEmbed = {
-      discourseUrl: 'https://blog.samgqroberts.com/',
+      discourseUrl: 'https://discourse.samgqroberts.com/',
       topicId: topic.id
     };
     const d = document.createElement('script');
