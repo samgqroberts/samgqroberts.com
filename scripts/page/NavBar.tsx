@@ -30,7 +30,7 @@ const NavBar: React.FC = () => {
     <div className={styles.navbar}>
       <div className={styles.headshotContainer}>
         <a href="/">
-          <Image src="/headshot.png" alt="In fact, me!" unsized />
+          <Image src="/headshot.png" alt="In fact, me!" layout="fill" />
         </a>
       </div>
       <MenuIcon

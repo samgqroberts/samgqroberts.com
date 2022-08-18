@@ -1,6 +1,6 @@
 import '../styles/globals.css';
 
-import { AppProps } from 'next/dist/next-server/lib/router/router';
+import { AppProps } from 'next/dist/shared/lib/router/router';
 import { useEffect } from 'react';
 import TagManager from 'react-gtm-module';
 

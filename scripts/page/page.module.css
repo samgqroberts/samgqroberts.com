@@ -114,7 +114,9 @@
   }
 
   .headshotContainer {
-    height: 140px; /* ensures the headshot is 140x140 (width follows height automatically) */
+    position: relative;
+    width: 132px;
+    height: 132px;
   }
 
   .navMenu {
