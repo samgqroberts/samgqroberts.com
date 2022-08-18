@@ -15,7 +15,6 @@ export function getEnv(): Result<RequiredEnv, string> {
   const missingStrings: (keyof RequiredEnv)[] = [];
   expectedStrings.forEach((key) => {
     const value = process.env[key];
-    console.log({ key, value, missingStrings });
     if (!is.string(value)) {
       missingStrings.push(key);
     } else {

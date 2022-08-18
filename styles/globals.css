@@ -56,3 +56,7 @@ h3:hover .heading-anchor,
 h4:hover .heading-anchor {
   visibility: visible;
 }
+
+#discourse-comments {
+  margin-top: 50px;
+}
