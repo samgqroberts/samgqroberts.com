@@ -24,6 +24,10 @@ export const PageMeta: React.FC<{
 const Home: React.FC<{
   topicsAndPosts: TopicAndFirstPost[];
 }> = ({ topicsAndPosts }) => {
+  // NB samgqroberts 2022-08-18 for whatever reason the ordering gets lost by here, need to sort again
+  topicsAndPosts.sort((t1, t2) =>
+    t2.topic.created_at.localeCompare(t1.topic.created_at)
+  );
   return (
     <Page>
       <PageMeta
@@ -42,13 +46,15 @@ export const getStaticProps: GetStaticProps = async () => {
   const topics = (await blogClient.getBlogTopics()).valueOrThrow(
     'Unable to get blog topics'
   );
-  const topicsAndPosts = await Promise.all(
-    topics.map((topic) => {
-      return blogClient
-        .getFirstPostForTopic(topic.id)
-        .then((post) => ({ topic, post }));
-    })
-  );
+  const topicsAndPosts = (
+    await Promise.all(
+      topics.map((topic) => {
+        return blogClient
+          .getFirstPostForTopic(topic.id)
+          .then((post) => ({ topic, post }));
+      })
+    )
+  ).sort((t1, t2) => t2.topic.created_at.localeCompare(t1.topic.created_at));
 
   // write rss file
   const rss = await generateRss(topicsAndPosts);
