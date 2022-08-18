@@ -33,6 +33,9 @@
 }
 .headshotContainer {
   padding: 4px; /* ensures headshot picture doesn't directly touch top or bottom of navbar */
+  position: relative;
+  width: 32px;
+  height: 32px;
 }
 
 .menuIcon {
