@@ -36,6 +36,9 @@ img.emoji {
   display: initial;
   height: 1em;
 }
+pre {
+  overflow-x: auto;
+}
 /* long words in the headers can overflow the container, so break them if it comes to that */
 h1,
 h2,
