@@ -18,6 +18,7 @@ export const PageMeta: React.FC<{
     <meta property="og:description" content={description} />
     <meta property="og:url" content={url} />
     <meta property="og:image" content="/headshot.png" />
+    <meta name="description" content={description} />
   </Head>
 );
 
