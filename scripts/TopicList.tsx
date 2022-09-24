@@ -20,7 +20,7 @@ const TopicList: React.FC<{
     <>
       {topicsAndPosts.map(({ topic, post }) => (
         <React.Fragment key={topic.slug}>
-          <PostTitle title={topic.title} date={post.created_at} />
+          <PostTitle title={topic.title} date={post.created_at} useH1={false} />
           <div dangerouslySetInnerHTML={{ __html: getExcerpt(post) }} />
           <Link href={`/posts/${topic.slug}`}>
             <a>Continue reading</a>

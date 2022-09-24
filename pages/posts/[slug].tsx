@@ -81,7 +81,7 @@ const Post: React.FC<{
         description={stripHtml(getExcerpt(post))}
         url={getPostUrl(topic.slug)}
       />
-      <PostTitle title={topic.title} date={post.created_at} />
+      <PostTitle title={topic.title} date={post.created_at} useH1={true} />
       <div ref={content} dangerouslySetInnerHTML={{ __html: post.cooked }} />
       <div id="discourse-comments"></div>
     </Page>
