@@ -64,6 +64,6 @@ h4:hover .heading-anchor {
   margin-top: 50px;
 }
 
-p {
+p, .discourse-embed-container li {
   line-height: 1.5em;
 }

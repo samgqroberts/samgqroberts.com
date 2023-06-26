@@ -82,7 +82,11 @@ const Post: React.FC<{
         url={getPostUrl(topic.slug)}
       />
       <PostTitle title={topic.title} date={post.created_at} useH1={true} />
-      <div ref={content} dangerouslySetInnerHTML={{ __html: post.cooked }} />
+      <div
+        className="discourse-embed-container"
+        ref={content}
+        dangerouslySetInnerHTML={{ __html: post.cooked }}
+      />
       <div id="discourse-comments"></div>
     </Page>
   );
