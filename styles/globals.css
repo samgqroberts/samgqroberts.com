@@ -39,6 +39,12 @@ img.emoji {
 pre {
   overflow-x: auto;
 }
+table {
+  overflow: auto;
+  max-width: 100%;
+  display: block;
+  padding: 10px;
+}
 /* long words in the headers can overflow the container, so break them if it comes to that */
 h1,
 h2,
