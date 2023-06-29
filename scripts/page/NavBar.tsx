@@ -76,6 +76,15 @@ const NavBar: React.FC = () => {
               RSS
             </a>
           </li>
+          <hr className={styles.subscribeRule} />
+          <li>
+            <a
+              href="https://buttondown.email/samgqroberts"
+              className={styles.subscribeLink}
+            >
+              <span>Subscribe via email</span>
+            </a>
+          </li>
         </ul>
       </nav>
     </div>

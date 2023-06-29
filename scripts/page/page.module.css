@@ -60,7 +60,7 @@
   /* give the nav menu a max-height approximately, but a little bigger than, the fully expanded height.
      this, together with `max-height` and `transition` above will animate opening and closing
      the nav menu. */
-  max-height: 260px;
+  max-height: 323px;
 }
 
 .navMenu ul {
@@ -74,14 +74,20 @@
   display: block; /* ensures `padding` style takes effect */
 }
 
+.subscribeLink span {
+  font-size: 18px;
+  color: #030453;
+  font-weight: 400;
+}
+
 @media (max-width: 700px) {
-  .socialsRule, .rssRule {
+  .socialsRule, .rssRule, .subscribeRule {
     border: 0;
     background: #b2b2b2;
     height: 1px;
     width: 50%;
   }
-  .rssRule {
+  .rssRule, .subscribeRule {
     margin: 10px auto 9px;
   }
 }
@@ -163,7 +169,7 @@
     display: none; /* these elements only apply to small screen form of navbar / nav menu */
   }
 
-  .socialsRule, .rssRule {
+  .socialsRule, .rssRule, .subscribeRule {
     border: 0;
     background: #e5e5e5;
     height: 1px;
@@ -171,9 +177,20 @@
   .socialsRule {
     margin: 0 0 15px;
   }
-  .rssRule {
+  .rssRule, .subscribeRule {
     width: 50%;
+  }
+  .rssRule {
     margin: 10px auto 9px;
+  }
+  .subscribeRule {
+    margin: 8px auto 11px auto;
+  }
+
+  .subscribeLink span {
+    font-size: 14px;
+    font-weight: 500;
+    color: #030453;
   }
 }
 

@@ -34,7 +34,7 @@ function getHeadingSlug(heading: HTMLHeadingElement): string {
 }
 
 function getPostUrl(topicSlug: string, headingSlug?: string): string {
-  return `/posts/${topicSlug}#${headingSlug}`;
+  return `/posts/${topicSlug}${headingSlug ? '#' + headingSlug : ''}`;
 }
 
 const Post: React.FC<{
