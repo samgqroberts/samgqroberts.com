@@ -56,6 +56,10 @@ export default class BlogClient {
     const categoriesResponse = await this.fetch<CategoriesResponse>(
       'categories.json'
     );
+    if ('error_type' in categoriesResponse || 'errors' in categoriesResponse) {
+      console.error(categoriesResponse);
+      throw new Error(JSON.stringify(categoriesResponse));
+    }
     const blogCategory = categoriesResponse.category_list.categories.find(
       (b) => b.name === this.BLOG_CATEGORY_NAME
     );

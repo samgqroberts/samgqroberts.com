@@ -2,6 +2,7 @@ import { GetStaticPaths, GetStaticProps } from 'next';
 import React, { useEffect, useRef } from 'react';
 
 import { blogClientFromEnvOrThrow } from '../../scripts/blogClient/BlogClient.factory';
+import { highlightCookedCode } from '../../scripts/highlightCode';
 import Page from '../../scripts/page/Page';
 import PostTitle from '../../scripts/PostTitle';
 import { getExcerpt, TopicAndFirstPost } from '../../scripts/TopicList';
@@ -111,6 +112,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const topicAndPost = await blogClient.getTopicAndPostBySlug(
     String(params.slug)
   );
+  topicAndPost.post.cooked = highlightCookedCode(topicAndPost.post.cooked);
   return {
     props: {
       topicAndPost

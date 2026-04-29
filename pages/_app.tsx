@@ -1,3 +1,4 @@
+import 'highlight.js/styles/github.css';
 import '../styles/globals.css';
 
 import { AppProps } from 'next/dist/shared/lib/router/router';

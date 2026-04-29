@@ -13,6 +13,7 @@
   "dependencies": {
     "classnames": "^2.2.6",
     "date-fns": "^2.16.1",
+    "highlight.js": "^11.11.1",
     "next": "^12.2.5",
     "predicates": "^2.0.3",
     "react": "^17.0.2",
